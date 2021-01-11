@@ -4,4 +4,4 @@ metadata:
   name: {{ template "krakend.fullname" . }}-configmap
 data:
   krakend.json: |-
-{{ .Files.Get "krakend.json" | indent 4 }}
+{{ .Values.krakendConfig | toJson |  indent 4 }}
