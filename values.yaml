@@ -18,11 +18,17 @@ service:
   targetPort: http
 
 ingress:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   enabled: true
-  path: /
+  path: /api
   hosts:
-    - gateway.local
-  tls: []
+    - dev-api.flitz.be
+  tls:
+    - hosts:
+        - dev-api.flitz.be
+      secretName: tls-secret
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
